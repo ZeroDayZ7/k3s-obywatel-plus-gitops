@@ -1,0 +1,8 @@
+resources:
+  - services/auth-service
+  - services/citizen-docs
+  - services/gateway
+  - services/notification-service
+  - services/citizen-api
+  - infra/postgres
+  - infra/redis

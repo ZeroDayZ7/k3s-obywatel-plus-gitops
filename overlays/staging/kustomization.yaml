@@ -1,0 +1,12 @@
+namespace: obywatel-plus-staging
+
+resources:
+  - ../../base
+  - namespace.yaml
+  - ingress.yaml
+
+patches:
+  - path: patches/auth-env.yaml
+    target:
+      kind: Deployment
+      name: auth-service
