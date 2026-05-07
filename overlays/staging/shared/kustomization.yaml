@@ -1,0 +1,6 @@
+# k3s-gitops-infra/overlays/staging/shared/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # - configmap.yaml
+  - ingress.yaml

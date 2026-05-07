@@ -4,5 +4,5 @@ resources:
   - services/gateway
   - services/notification-service
   - services/citizen-api
-  - infra/postgres
+  - infra/postgres-auth
   - infra/redis
