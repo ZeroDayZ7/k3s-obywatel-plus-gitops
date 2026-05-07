@@ -1,0 +1,3 @@
+# base/infra/namespaces/kustomization.yaml
+resources:
+  - staging.yaml

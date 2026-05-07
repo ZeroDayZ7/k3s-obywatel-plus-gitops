@@ -11,7 +11,7 @@ resources:
   # - services/notification-service
   # - services/citizen-api
 
-  - infra/namespaces/staging.yaml
+  - infra/namespaces
 
   - infra/databases/db-auth
   # - infra/databases/db-citizen-docs
