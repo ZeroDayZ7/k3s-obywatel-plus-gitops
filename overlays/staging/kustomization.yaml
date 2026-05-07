@@ -2,9 +2,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: obywatel-plus-staging
+namespace: obywatel-staging
 
 resources:
+  - ../../base/infra/namespaces/staging.yaml
   - shared/
   - infra/databases/db-auth
   - infra/cache/redis-auth
