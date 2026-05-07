@@ -1,3 +1,4 @@
+# base\services\gateway\deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,21 +17,41 @@ spec:
         - name: gateway
           image: zerodayz7/obywatel-plus-gateway:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
           envFrom:
             - configMapRef:
                 name: gateway-config
           env:
-            - name: JWT_SECRET
+            - name: JWT_ACCESS_SECRET
               valueFrom:
                 secretKeyRef:
                   name: gateway-secret
-                  key: jwt-secret
-            - name: API_KEY
+                  key: jwt-access-secret
+            - name: JWT_REFRESH_SECRET
               valueFrom:
                 secretKeyRef:
                   name: gateway-secret
-                  key: api-key
+                  key: jwt-refresh-secret
+            - name: INTERNAL_HMAC_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: gateway-secret
+                  key: internal-hmac-secret
+            - name: INTERNAL_ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: gateway-secret
+                  key: internal-encryption-key
+            - name: INTERNAL_HASH_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: gateway-secret
+                  key: internal-hash-salt
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gateway-secret
+                  key: redis-password
           resources:
             limits:
               cpu: "200m"
@@ -41,6 +62,6 @@ spec:
           livenessProbe:
             httpGet:
               path: /health
-              port: 8080
-            initialDelaySeconds: 10
+              port: 8081
+            initialDelaySeconds: 15
             periodSeconds: 10

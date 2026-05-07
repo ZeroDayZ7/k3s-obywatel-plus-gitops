@@ -5,16 +5,32 @@ kind: Kustomization
 namespace: obywatel-staging
 
 resources:
-  # - services/auth-service
+  - infra/namespaces
+  - infra/databases/db-auth
+  - infra/cache/redis-auth
+  - services/gateway
+  - services/auth-service
   # - services/citizen-docs
-  # - services/gateway
   # - services/notification-service
   # - services/citizen-api
 
-  - infra/namespaces
+labels:
+  - includeSelectors: true
+    pairs:
+      env: staging
+      managed-by: argo-cd
+      project: obywatel-plus
 
-  - infra/databases/db-auth
-  # - infra/databases/db-citizen-docs
-  # - infra/databases/db-notification
+# CENTRALNE STEROWANIE SKALOWANIEM
+replicas:
+  - name: gateway
+    count: 1
 
-  - infra/cache/redis-auth
+  - name: auth-service
+    count: 1
+
+  - name: db-auth
+    count: 1
+
+  - name: redis-auth
+    count: 1

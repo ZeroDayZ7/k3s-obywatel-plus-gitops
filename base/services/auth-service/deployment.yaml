@@ -16,29 +16,63 @@ spec:
         - name: auth-service
           image: zerodayz7/obywatel-plus-auth:latest
           ports:
-            - containerPort: 8081
+            - containerPort: 8082
           envFrom:
             - configMapRef:
                 name: auth-config
           env:
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: db-auth-secret
-                  key: password
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   name: db-auth-secret
                   key: user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-auth-secret
+                  key: password
+
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: redis-auth-secret
                   key: password
+
+            - name: JWT_ACCESS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: auth-service-secret
+                  key: jwt-access-secret
+            - name: JWT_REFRESH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: auth-service-secret
+                  key: jwt-refresh-secret
+            - name: INTERNAL_HMAC_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: auth-service-secret
+                  key: internal-hmac-secret
+            - name: INTERNAL_ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: auth-service-secret
+                  key: internal-encryption-key
+            - name: INTERNAL_HASH_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: auth-service-secret
+                  key: internal-hash-salt
+          resources:
+            limits:
+              cpu: "300m"
+              memory: "512Mi"
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
           livenessProbe:
             httpGet:
               path: /health
-              port: 8081
-            initialDelaySeconds: 10
+              port: 8082
+            initialDelaySeconds: 15
             periodSeconds: 10
