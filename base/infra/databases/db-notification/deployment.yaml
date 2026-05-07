@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-notification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-notification
+  template:
+    metadata:
+      labels:
+        app: db-notification
+    spec:
+      containers:
+        - name: database
+          image: postgres:18.3-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-notification-secret
+                  key: database
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-notification-secret
+                  key: user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-notification-secret
+                  key: password
+          volumeMounts:
+            - name: db-storage
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: db-storage
+          persistentVolumeClaim:
+            claimName: db-notification-pvc

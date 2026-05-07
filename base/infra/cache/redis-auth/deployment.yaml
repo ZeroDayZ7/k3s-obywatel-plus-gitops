@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis
+  name: redis-auth
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: redis
+      app: redis-auth
   template:
     metadata:
       labels:
-        app: redis
+        app: redis-auth
     spec:
       containers:
         - name: redis
@@ -22,7 +22,7 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: redis-secret
+                  name: redis-auth-secret
                   key: password
           volumeMounts:
             - name: redis-data

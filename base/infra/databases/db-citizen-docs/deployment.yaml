@@ -1,42 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-auth
+  name: db-citizen-docs
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres-auth
+      app: db-citizen-docs
   template:
     metadata:
       labels:
-        app: postgres-auth
+        app: db-citizen-docs
     spec:
       containers:
-        - name: postgres
+        - name: database
           image: postgres:18.3-alpine
           ports:
             - containerPort: 5432
           env:
-            - name: POSTGRES_DB
+            - name: DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: postgres-auth-secret
+                  name: db-citizen-docs-secret
                   key: database
-            - name: POSTGRES_USER
+            - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: postgres-auth-secret
+                  name: db-citizen-docs-secret
                   key: user
-            - name: POSTGRES_PASSWORD
+            - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-auth-secret
+                  name: db-citizen-docs-secret
                   key: password
           volumeMounts:
-            - name: postgres-storage
+            - name: db-storage
               mountPath: /var/lib/postgresql/data
       volumes:
-        - name: postgres-storage
+        - name: db-storage
           persistentVolumeClaim:
-            claimName: postgres-auth-pvc
+            claimName: db-citizen-docs-pvc

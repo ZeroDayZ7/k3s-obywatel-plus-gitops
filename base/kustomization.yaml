@@ -4,5 +4,9 @@ resources:
   - services/gateway
   - services/notification-service
   - services/citizen-api
-  - infra/postgres-auth
-  - infra/redis
+
+  - infra/databases/db-auth
+  - infra/databases/db-citizen-docs
+  - infra/databases/db-notification
+
+  - infra/cache/redis-auth

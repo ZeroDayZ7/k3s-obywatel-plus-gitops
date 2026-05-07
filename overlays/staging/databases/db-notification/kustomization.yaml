@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../../../base/infra/databases/db-notification
+
+patches:
+  - path: patch-storage.yaml
+    target:
+      kind: PersistentVolumeClaim
+      name: db-notification-pvc

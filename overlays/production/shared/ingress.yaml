@@ -1,0 +1,26 @@
+# k3s-obywatel-plus-gitops/overlays/staging/shared/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: obywatel-plus-ingress
+  namespace: obywatel-staging
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - api-obywatel.local
+      secretName: obywatel-tls-secret
+  rules:
+    - host: api-obywatel.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api-obywatel-api
+                port:
+                  number: 8080

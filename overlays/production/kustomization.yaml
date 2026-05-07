@@ -1,12 +1,14 @@
-namespace: obywatel-plus-production
+# k3s-gitops-infra/overlays/staging/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: obywatel-plus-staging
 
 resources:
-  - ../../base
-  - namespace.yaml
-  - ingress.yaml
-
-patches:
-  - path: patches/auth-env.yaml
-    target:
-      kind: Deployment
-      name: auth-service
+  - shared/
+  - databases/postgres-auth
+  - cache/redis-auth
+  # - services/auth-service
+  # - services/gateway
+  # - services/citizen-docs
+  # - services/notification-service
