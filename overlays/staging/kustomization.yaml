@@ -6,8 +6,8 @@ namespace: obywatel-plus-staging
 
 resources:
   - shared/
-  - databases/db-auth
-  - cache/redis-auth
+  - infra/databases/db-auth
+  - infra/cache/redis-auth
   # - services/auth-service
   # - services/gateway
   # - services/citizen-docs

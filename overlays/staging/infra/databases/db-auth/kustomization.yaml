@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  # Ścieżka do bazy (4 poziomy w górę: db-auth -> databases -> staging -> overlays -> root)
+  - ../../../../base/infra/databases/db-auth
+
+patches:
+  - path: patch-storage.yaml
+    target:
+      kind: PersistentVolumeClaim
+      name: db-auth-pvc

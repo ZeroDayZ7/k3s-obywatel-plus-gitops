@@ -1,12 +1,18 @@
+# overlays/staging/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: obywatel-plus-staging
+
 resources:
-  - services/auth-service
-  - services/citizen-docs
-  - services/gateway
-  - services/notification-service
-  - services/citizen-api
+  # - services/auth-service
+  # - services/citizen-docs
+  # - services/gateway
+  # - services/notification-service
+  # - services/citizen-api
 
   - infra/databases/db-auth
-  - infra/databases/db-citizen-docs
-  - infra/databases/db-notification
+  # - infra/databases/db-citizen-docs
+  # - infra/databases/db-notification
 
   - infra/cache/redis-auth
