@@ -5,7 +5,6 @@ kind: Kustomization
 namespace: obywatel-staging
 
 resources:
-  - ../../base/infra/namespaces/staging.yaml
   - shared/
   - infra/databases/db-auth
   - infra/cache/redis-auth
