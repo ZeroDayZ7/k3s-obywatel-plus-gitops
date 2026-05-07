@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   # Ścieżka do bazy (4 poziomy w górę: db-auth -> databases -> staging -> overlays -> root)
-  - ../../../../base/infra/databases/db-auth
+  - ../../../../../base/infra/databases/db-auth
 
 patches:
   - path: patch-storage.yaml
