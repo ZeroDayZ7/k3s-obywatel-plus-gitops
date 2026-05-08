@@ -13,4 +13,4 @@ spec:
             - name: DEBUG
               value: "true"
             - name: AUTH_SERVICE_ADDR
-              value: "http://db-auth:5432"
+              value: "http://auth-service"

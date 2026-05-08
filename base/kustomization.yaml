@@ -9,7 +9,7 @@ resources:
   - infra/databases/db-auth
   - infra/cache/redis-auth
   - services/gateway
-  - services/auth-service
+  # - services/auth-service
   # - services/citizen-docs
   # - services/notification-service
   # - services/citizen-api
@@ -26,8 +26,8 @@ replicas:
   - name: gateway
     count: 1
 
-  - name: auth-service
-    count: 1
+  # - name: auth-service
+  #   count: 1
 
   - name: db-auth
     count: 1

@@ -13,4 +13,4 @@ spec:
                 fieldRef:
                   fieldPath: spec.nodeName
             - name: ENV
-              value: "production"
+              value: "stagiong"

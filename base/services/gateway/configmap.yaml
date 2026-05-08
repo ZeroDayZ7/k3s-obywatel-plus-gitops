@@ -4,7 +4,7 @@ kind: ConfigMap
 metadata:
   name: gateway-config
 data:
-  PORT: "8080"
+  PORT: "8081"
   LOG_LEVEL: "info"
-  AUTH_SERVICE_URL: "http://db-auth:5432"
+  AUTH_SERVICE_URL: "http://auth-service:8082"
   REDIS_URL: "redis-auth:6379"
