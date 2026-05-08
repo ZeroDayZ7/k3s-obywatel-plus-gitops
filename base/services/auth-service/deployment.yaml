@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: zerodayz7/obywatel-plus-auth:placeholder
+          image: zerodayz7/obywatel-auth:placeholder
           ports:
             - containerPort: 8082
           envFrom:
