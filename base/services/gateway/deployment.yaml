@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: ghcr.io/zerodayz7/obywatel-gateway
+          image: ghcr.io/zerodayz7/obywatel-gateway:1279ebf
           ports:
             - containerPort: 8081
           envFrom:

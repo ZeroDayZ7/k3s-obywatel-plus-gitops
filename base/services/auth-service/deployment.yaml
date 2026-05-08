@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: ghcr.io/zerodayz7/obywatel-auth
+          image: ghcr.io/zerodayz7/obywatel-auth:1279ebf
           ports:
             - containerPort: 8082
           envFrom:

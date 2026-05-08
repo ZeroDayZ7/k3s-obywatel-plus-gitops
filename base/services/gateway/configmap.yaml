@@ -6,4 +6,4 @@ metadata:
 data:
   PORT: "8081"
   LOG_LEVEL: "info"
-  AUTH_SERVICE_URL: "http://auth-service:8082"
+  AUTH_SERVICE_ADDR: "http://auth-service:8082"
