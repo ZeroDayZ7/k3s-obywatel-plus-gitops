@@ -12,11 +12,11 @@ metadata:
 spec:
   ingressClassName: nginx
 
-  tls:
-    - hosts:
-        - api-obywatel.local
-        - localhost-0.tail400384.ts.net
-      secretName: obywatel-tls-secret
+  # tls:
+  #   - hosts:
+  #       - api-obywatel.local
+  #       - localhost-0.tail400384.ts.net
+  #     secretName: obywatel-tls-secret
 
   rules:
     - host: api-obywatel.local
@@ -32,11 +32,4 @@ spec:
 
     - host: localhost-0.tail400384.ts.net
       http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: gateway
-                port:
-                  number: 80
+        paths: *paths
