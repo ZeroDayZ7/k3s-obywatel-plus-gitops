@@ -7,5 +7,3 @@ data:
   PORT: "8081"
   LOG_LEVEL: "info"
   AUTH_SERVICE_URL: "http://auth-service:8082"
-  REDIS_URL: "redis-auth:6379"
-  REDIS_ADDR: "redis-auth:6379"
