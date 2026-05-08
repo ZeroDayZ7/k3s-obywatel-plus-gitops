@@ -8,7 +8,7 @@ resources:
   - shared/
   - infra/databases/db-auth
   - infra/cache/redis-auth
-  # - services/auth
+  - services/auth-service
   - services/gateway
   # - services/citizen-docs
   # - services/notification-service
