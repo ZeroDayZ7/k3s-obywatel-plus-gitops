@@ -8,6 +8,6 @@ data:
   LOG_LEVEL: "info"
   DB_HOST: "db-auth"
   DB_PORT: "5432"
-  DB_NAME: "obywatel_db"
+  DB_NAME: "obywatel_auth"
   REDIS_HOST: "redis-auth"
   REDIS_PORT: "6379"
