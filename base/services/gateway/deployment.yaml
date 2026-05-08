@@ -49,8 +49,8 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: gateway-secret
-                  key: REDIS_PASSWORD
+                  name: redis-auth-secret
+                  key: password
           resources:
             limits:
               cpu: "200m"
