@@ -16,7 +16,7 @@ configMapGenerator:
 images:
   - name: ghcr.io/zerodayz7/obywatel-gateway
     newName: ghcr.io/zerodayz7/obywatel-gateway
-    newTag: 1279ebf
+    newTag: 27dd283
 
 patches:
   - path: patch-resources.yaml
