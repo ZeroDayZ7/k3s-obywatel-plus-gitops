@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth-service
+  namespace: obywatel-staging
 spec:
   replicas: 1
   selector:
@@ -31,11 +32,13 @@ spec:
                 secretKeyRef:
                   name: db-auth-secret
                   key: password
+
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: gateway-secret
-                  key: REDIS_PASSWORD
+                  name: redis-auth-secret
+                  key: password
+
             - name: JWT_ACCESS_SECRET
               valueFrom:
                 secretKeyRef:
@@ -61,16 +64,24 @@ spec:
                 secretKeyRef:
                   name: gateway-secret
                   key: INTERNAL_HASH_SALT
+
           resources:
             limits:
               cpu: "300m"
               memory: "512Mi"
             requests:
               cpu: "100m"
-              memory: "128Mi"
+              memory: "256Mi"
+
           livenessProbe:
             httpGet:
               path: /health
               port: 8082
-            initialDelaySeconds: 15
+            initialDelaySeconds: 20
             periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8082
+            initialDelaySeconds: 10
+            periodSeconds: 5
