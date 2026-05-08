@@ -68,31 +68,21 @@ spec:
             requests:
               cpu: "100m"
               memory: "256Mi"
-            # Sonda STARTOWA - daje czas na "rozkręcenie się" talerzy HDD i init bazy
-            startupProbe:
-              httpGet:
-                path: /health
-                port: 8082
-              # Twój laptop potrzebuje czasu: 10 prób co 10 sekund = 100 sekund na start
-              failureThreshold: 10
-              periodSeconds: 10
-
-            # Sonda ŻYCIA - ma być lekka. Jeśli to zawiedzie, K8s robi RESTART.
-            livenessProbe:
-              httpGet:
-                path: /health # Docelowo zrób osobny endpoint /liveness bez checków!
-                port: 8082
-              initialDelaySeconds: 5 # StartupProbe już nas osłoniło, więc tu krótko
-              periodSeconds: 30 # Nie męcz i3 zbyt często
-              timeoutSeconds: 5
-              failureThreshold: 3 # 3 błędy pod rząd = restart
-
-            # Sonda GOTOWOŚCI - jeśli to zawiedzie, K8s odcina ruch od Poda (nie restartuje go!)
-            readinessProbe:
-              httpGet:
-                path: /health
-                port: 8082
-              initialDelaySeconds: 5
-              periodSeconds: 15 # Sprawdzaj upstreams co 15 sekund
-              timeoutSeconds: 10 # Upstreamy mogą mulić na HDD, daj im czas
-              failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8082
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8082
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 3
+            failureThreshold: 3
+            successThreshold: 1
