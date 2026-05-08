@@ -3,25 +3,28 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../../../base/services/gateway
+- ../../../../base/services/gateway
 
 configMapGenerator:
-  - name: gateway-config
-    behavior: merge
-    envs:
-      - gateway.env
+- behavior: merge
+  envs:
+  - gateway.env
+  name: gateway-config
 
 images:
-  - name: zerodayz7/obywatel-gateway
-    newName: ghcr.io/zerodayz7/obywatel-gateway
-    newTag: 1279ebf
+- name: ghcr.io/zerodayz7/obywatel-gateway
+  newName: ghcr.io/zerodayz7/obywatel-gateway
+  newTag: 2b72f96
+- name: zerodayz7/obywatel-gateway
+  newName: ghcr.io/zerodayz7/obywatel-gateway
+  newTag: 1279ebf
 
 patches:
-  - path: patch-resources.yaml
-    target:
-      kind: Deployment
-      name: gateway
-  - path: patch-env.yaml
-    target:
-      kind: Deployment
-      name: gateway
+- path: patch-resources.yaml
+  target:
+    kind: Deployment
+    name: gateway
+- path: patch-env.yaml
+  target:
+    kind: Deployment
+    name: gateway
