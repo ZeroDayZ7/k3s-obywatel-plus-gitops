@@ -3,25 +3,28 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../../../base/services/auth-service
+- ../../../../base/services/auth-service
 
 configMapGenerator:
-  - behavior: merge
-    envs:
-      - auth-service.env
-    name: auth-config
+- behavior: merge
+  envs:
+  - auth-service.env
+  name: auth-config
 
 images:
-  - name: zerodayz7/obywatel-auth
-    newName: ghcr.io/zerodayz7/obywatel-auth
-    newTag: 1279ebf
+- name: ghcr.io/zerodayz7/obywatel-auth
+  newName: ghcr.io/zerodayz7/obywatel-auth
+  newTag: 27dd283
+- name: zerodayz7/obywatel-auth
+  newName: ghcr.io/zerodayz7/obywatel-auth
+  newTag: 1279ebf
 
 patches:
-  - path: patch-resources.yaml
-    target:
-      kind: Deployment
-      name: auth-service
-  - path: patch-env.yaml
-    target:
-      kind: Deployment
-      name: auth-service
+- path: patch-resources.yaml
+  target:
+    kind: Deployment
+    name: auth-service
+- path: patch-env.yaml
+  target:
+    kind: Deployment
+    name: auth-service
