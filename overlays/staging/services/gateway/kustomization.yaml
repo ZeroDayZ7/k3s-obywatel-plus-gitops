@@ -5,6 +5,12 @@ kind: Kustomization
 resources:
   - ../../../../base/services/gateway
 
+configMapGenerator:
+  - name: gateway-config
+    behavior: merge
+    envs:
+      - gateway.env
+
 images:
   - name: zerodayz7/obywatel-gateway
     newName: ghcr.io/zerodayz7/obywatel-gateway
