@@ -1,6 +1,6 @@
 # base\services\gateway\configmap.yaml
 apiVersion: v1
-kind: ConfigMap
+kind: ConfigMapco
 metadata:
   name: gateway-config
 data:
@@ -8,3 +8,4 @@ data:
   LOG_LEVEL: "info"
   AUTH_SERVICE_URL: "http://auth-service:8082"
   REDIS_URL: "redis-auth:6379"
+  REDIS_ADDR: "redis-auth:6379"
