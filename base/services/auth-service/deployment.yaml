@@ -31,13 +31,11 @@ spec:
                 secretKeyRef:
                   name: db-auth-secret
                   key: password
-
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: redis-auth-secret
                   key: password
-
             - name: JWT_ACCESS_SECRET
               valueFrom:
                 secretKeyRef:
@@ -63,7 +61,6 @@ spec:
                 secretKeyRef:
                   name: gateway-secret
                   key: INTERNAL_HASH_SALT
-
           resources:
             limits:
               cpu: "300m"
@@ -71,16 +68,21 @@ spec:
             requests:
               cpu: "100m"
               memory: "256Mi"
-
           livenessProbe:
             httpGet:
               path: /health
               port: 8082
-            initialDelaySeconds: 20
+            initialDelaySeconds: 30
             periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+            successThreshold: 1
           readinessProbe:
             httpGet:
               path: /health
               port: 8082
             initialDelaySeconds: 10
             periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+            successThreshold: 1
