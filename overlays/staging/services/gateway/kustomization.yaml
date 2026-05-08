@@ -11,6 +11,7 @@ configMapGenerator:
       - gateway.env
     name: gateway-config
 
+images:
   - name: zerodayz7/obywatel-gateway
     newName: ghcr.io/zerodayz7/obywatel-gateway
     newTag: 1279ebf
