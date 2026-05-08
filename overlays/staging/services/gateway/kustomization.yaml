@@ -14,7 +14,7 @@ configMapGenerator:
 images:
 - name: ghcr.io/zerodayz7/obywatel-gateway
   newName: ghcr.io/zerodayz7/obywatel-gateway
-  newTag: eac6fab
+  newTag: d20f8e7
 - name: zerodayz7/obywatel-gateway
   newName: ghcr.io/zerodayz7/obywatel-gateway
   newTag: 1279ebf
