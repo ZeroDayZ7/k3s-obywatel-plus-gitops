@@ -13,11 +13,12 @@ spec:
   tls:
     - hosts:
         - api-obywatel.local
+        - 100.75.109.94
       secretName: obywatel-tls-secret
   rules:
     - host: api-obywatel.local
       http:
-        paths:
+        paths: &paths
           - path: /
             pathType: Prefix
             backend:
@@ -25,3 +26,6 @@ spec:
                 name: gateway
                 port:
                   number: 80
+    - host: 100.75.109.94
+      http:
+        paths: *paths

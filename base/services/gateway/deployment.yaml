@@ -58,11 +58,35 @@ spec:
             requests:
               cpu: "100m"
               memory: "128Mi"
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8081
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 6
+            # STARTUP - Kluczowy dla Twojego HDD
+            # Dajemy mu aż 2 minuty na "rozruch" (12 prób x 10s)
+            # Dopóki to nie przejdzie, Liveness i Readiness w ogóle nie startują.
+            startupProbe:
+              httpGet:
+                path: /health
+                port: 8081
+              failureThreshold: 12
+              periodSeconds: 10
+
+            # LIVENESS - Tylko życie procesu
+            # UWAGA: Ustawiamy wysoki próg błędu (failureThreshold),
+            # żeby chwilowy "chrup" dysku HDD przy zapisywaniu logów nie zabił Gatewaya.
+            livenessProbe:
+              httpGet:
+                path: /health # Idealnie byłoby /liveness, ale zostańmy przy tym co masz
+                port: 8081
+              initialDelaySeconds: 0 # StartupProbe już odczekał swoje
+              periodSeconds: 45 # Sprawdzaj rzadko! Nie ma sensu częściej na tym procku.
+              timeoutSeconds: 5 # 5 sekund to świat i ludzie na odpowiedź procesu
+              failureThreshold: 5 # Musi paść 5 razy pod rząd (czyli przez ~4 minuty), żeby go ubić
+
+            # READINESS - Gotowość na ruch
+            # To wyłącza ruch z Ingressa do Gatewaya, jeśli np. Auth-Service leży.
+            readinessProbe:
+              httpGet:
+                path: /health
+                port: 8081
+              initialDelaySeconds: 5
+              periodSeconds: 20 # To musi być częściej niż liveness, żeby szybko odpiąć usera od błędów
+              timeoutSeconds: 10 # Dajemy 10s, bo check upstreams (auth, redis) może trwać
+              failureThreshold: 3
