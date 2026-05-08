@@ -1,4 +1,3 @@
-# base\services\gateway\deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,32 +25,32 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: gateway-secret
-                  key: jwt-access-secret
+                  key: JWT_ACCESS_SECRET
             - name: JWT_REFRESH_SECRET
               valueFrom:
                 secretKeyRef:
                   name: gateway-secret
-                  key: jwt-refresh-secret
+                  key: JWT_REFRESH_SECRET
             - name: INTERNAL_HMAC_SECRET
               valueFrom:
                 secretKeyRef:
                   name: gateway-secret
-                  key: internal-hmac-secret
+                  key: INTERNAL_HMAC_SECRET
             - name: INTERNAL_ENCRYPTION_KEY
               valueFrom:
                 secretKeyRef:
                   name: gateway-secret
-                  key: internal-encryption-key
+                  key: INTERNAL_ENCRYPTION_KEY
             - name: INTERNAL_HASH_SALT
               valueFrom:
                 secretKeyRef:
                   name: gateway-secret
-                  key: internal-hash-salt
+                  key: INTERNAL_HASH_SALT
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: gateway-secret
-                  key: redis-password
+                  key: REDIS_PASSWORD
           resources:
             limits:
               cpu: "200m"
