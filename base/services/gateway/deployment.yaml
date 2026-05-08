@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: zerodayz7/obywatel-plus-gateway:latest
+          image: zerodayz7/obywatel-plus-gateway:placeholder
           ports:
             - containerPort: 8081
           envFrom:

@@ -1,3 +1,4 @@
+# base\services\auth-service\deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: zerodayz7/obywatel-plus-auth:latest
+          image: zerodayz7/obywatel-plus-auth:placeholder
           ports:
             - containerPort: 8082
           envFrom:

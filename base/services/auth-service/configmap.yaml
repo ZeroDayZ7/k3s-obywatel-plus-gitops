@@ -1,3 +1,4 @@
+# base\services\auth-service\configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:

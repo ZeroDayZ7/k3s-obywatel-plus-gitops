@@ -1,3 +1,4 @@
+# base\services\gateway\configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
