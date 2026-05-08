@@ -1,3 +1,4 @@
+# overlays\staging\services\gateway\patch-env.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,6 +8,9 @@ spec:
     spec:
       containers:
         - name: gateway
+          envFrom:
+            - configMapRef:
+                name: gateway-config
           env:
             - name: ENVIRONMENT
               value: "staging"

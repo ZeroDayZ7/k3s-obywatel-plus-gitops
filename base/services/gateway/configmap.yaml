@@ -1,6 +1,6 @@
 # base\services\gateway\configmap.yaml
 apiVersion: v1
-kind: ConfigMapco
+kind: ConfigMap
 metadata:
   name: gateway-config
 data:
