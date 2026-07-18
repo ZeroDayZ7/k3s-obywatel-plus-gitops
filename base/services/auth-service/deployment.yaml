@@ -63,11 +63,11 @@ spec:
                   key: INTERNAL_HASH_SALT
           resources:
             limits:
-              cpu: "1000m"
-              memory: "1300Mi"
+              cpu: "300m"
+              memory: "512Mi"
             requests:
-              cpu: "1000m"
-              memory: "1024Mi"
+              cpu: "100m"
+              memory: "256Mi"
           # startupProbe:
           #   httpGet:
           #     path: /health
