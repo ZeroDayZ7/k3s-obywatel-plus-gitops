@@ -63,16 +63,24 @@ spec:
                   key: INTERNAL_HASH_SALT
           resources:
             limits:
-              cpu: "300m"
-              memory: "512Mi"
+              cpu: "500m"
+              memory: "1024Mi"
             requests:
-              cpu: "100m"
-              memory: "256Mi"
+              cpu: "150m"
+              memory: "512Mi"
+          # startupProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 8082
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 5
+          #   timeoutSeconds: 5
+          #   failureThreshold: 12
           livenessProbe:
             httpGet:
               path: /health
               port: 8082
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 6
@@ -81,7 +89,7 @@ spec:
             httpGet:
               path: /health
               port: 8082
-            initialDelaySeconds: 10
+            initialDelaySeconds: 45
             periodSeconds: 30
             timeoutSeconds: 3
             failureThreshold: 3
